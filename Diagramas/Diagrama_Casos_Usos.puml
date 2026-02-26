@@ -1,0 +1,90 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+title FarmaExpres - Diagrama de Casos de Uso
+
+actor Administrador
+actor Empleado
+actor Sistema
+
+rectangle "Sistema FarmaExpres" {
+
+    ' ---------------------
+    ' Seguridad
+    ' ---------------------
+    usecase "Iniciar sesión" as UC1
+    usecase "Cerrar sesión" as UC2
+    usecase "Registrar usuario" as UC3
+    usecase "Asignar rol" as UC4
+    usecase "Consultar bitácora" as UC5
+    usecase "Registrar en bitácora" as UC6
+
+    ' ---------------------
+    ' Inventario
+    ' ---------------------
+    usecase "Registrar producto" as UC7
+    usecase "Actualizar producto" as UC8
+    usecase "Eliminar producto" as UC9
+    usecase "Registrar entrada" as UC10
+    usecase "Registrar salida" as UC11
+    usecase "Consultar inventario" as UC12
+
+    ' ---------------------
+    ' Ventas
+    ' ---------------------
+    usecase "Crear venta" as UC13
+    usecase "Confirmar venta" as UC14
+    usecase "Anular venta" as UC15
+    usecase "Validar stock" as UC16
+    usecase "Registrar movimiento" as UC17
+
+    ' ---------------------
+    ' Reportes
+    ' ---------------------
+    usecase "Ver productos agotados" as UC18
+    usecase "Ver productos próximos a vencer" as UC19
+    usecase "Ver historial de movimientos" as UC20
+
+    ' ---------------------
+    ' Automatización
+    ' ---------------------
+    usecase "Generar alerta de vencimiento" as UC21
+    usecase "Bloquear lote vencido" as UC22
+}
+
+' =========================
+' RELACIONES ACTORES
+' =========================
+
+Empleado --> UC1
+Empleado --> UC2
+Empleado --> UC10
+Empleado --> UC11
+Empleado --> UC12
+Empleado --> UC13
+Empleado --> UC14
+Empleado --> UC15
+
+Administrador --> UC3
+Administrador --> UC4
+Administrador --> UC5
+Administrador --> UC7
+Administrador --> UC8
+Administrador --> UC9
+Administrador --> UC18
+Administrador --> UC19
+Administrador --> UC20
+
+Sistema --> UC21
+Sistema --> UC22
+
+' =========================
+' RELACIONES INCLUDE
+' =========================
+
+UC1 .> UC6 : <<include>>
+UC14 .> UC16 : <<include>>
+UC14 .> UC17 : <<include>>
+
+@enduml
