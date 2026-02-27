@@ -26,7 +26,7 @@ public class Bitacora {
 
     public Bitacora() {}
 
-    public Bitacora(Long usuarioId, String accion, String ip) {
+    public Bitacora(Long usuarioId, String accion) {
         this.usuarioId = usuarioId;
         this.accion = accion;
         this.fechaHora = LocalDateTime.now();
