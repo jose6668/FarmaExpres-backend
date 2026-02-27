@@ -19,12 +19,12 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest request) {
 
-        Usuario usuario = authService.login(
+        String token = authService.login(
                 request.getEmail(),
                 request.getPassword()
         );
 
-        return "Login exitoso: " + usuario.getEmail();
+        return token;
     }
 
 
