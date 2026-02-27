@@ -27,29 +27,20 @@ public class Producto {
     private BigDecimal precio;
 
     @Column(nullable = false)
-    private LocalDate fechaVencimiento;
+    private Boolean activo;
 
-
-
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
-    private List<Movimiento> movimientos;
+    @OneToMany(mappedBy = "producto")
+    private List<Lote> lotes;
 
     public Producto() {}
 
-    public Producto(String nombre,
-                    String codigo,
-                    Integer stock,
-                    BigDecimal precio,
-                    LocalDate fechaVencimiento) {
-
+    public Producto(String nombre, String codigo, Integer stock, BigDecimal precio) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.stock = stock;
         this.precio = precio;
-        this.fechaVencimiento = fechaVencimiento;
+        this.activo = true;
     }
-
-    // Métodos de negocio importantes
 
     public void aumentarStock(Integer cantidad) {
         this.stock += cantidad;
@@ -62,49 +53,13 @@ public class Producto {
         this.stock -= cantidad;
     }
 
+    public Long getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getCodigo() { return codigo; }
+    public Integer getStock() { return stock; }
+    public BigDecimal getPrecio() { return precio; }
+    public Boolean getActivo() { return activo; }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public BigDecimal getPrecio() {
-        return precio;
-    }
-
-    public LocalDate getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public void setPrecio(BigDecimal precio) {
-        this.precio = precio;
-    }
-
-    public void setFechaVencimiento(LocalDate fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setPrecio(BigDecimal precio) { this.precio = precio; }
 }

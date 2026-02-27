@@ -57,7 +57,9 @@ class Producto {
   +ID id
   +String codigo
   +String nombre
-  +String descripcion
+  +Int Stock
+  +Float precio
+  +Boolean activo
   +stockTotal()
 }
 ```
@@ -68,9 +70,9 @@ classDiagram
 class Lote {
   +ID id
   +String numeroLote
-  +DateTime fechaVencimiento
   +Producto producto
-  +int stockActual
+  +DateTime fechaVencimiento
+  +Int catidad
   +descontarStock()
   +aumentarStock()
   +estaVencimiento()
@@ -83,7 +85,7 @@ classDiagram
 class Venta {
   +ID id
   +IDUsuario usuario
-  +DateTime fechaventa
+  +DateTime fecha
   +EstadoVenta estado
   +Float total
   +confirmarVenta()
@@ -101,6 +103,7 @@ class DetalleVenta {
   +Lote lote
   +Venta venta
   +Float subtotal
+  +IDProducto producto
   +calcularSubtotal()
   +validarCantidadDisponible()
 }
@@ -113,9 +116,10 @@ classDiagram
 class Movimiento {
   +ID id
   +Int Cantidad
-  +DateTime fechaHora
+  +DateTime fecha
   +IDUsuario usuario
-  +Lote lote
+  +IDProducto producto
+  +TipoMovimineto tipo
   +registrarEntrada()
   +registrarSalida()
 }
@@ -171,16 +175,18 @@ class Producto {
   +ID id
   +String codigo
   +String nombre
-  +String descripcion
+  +Int Stock
+  +Float precio
+  +Boolean activo
   +stockTotal()
 }
 
 class Lote {
   +ID id
   +String numeroLote
-  +DateTime fechaVencimiento
   +Producto producto
-  +int stockActual
+  +DateTime fechaVencimiento
+  +Int catidad
   +descontarStock()
   +aumentarStock()
   +estaVencimiento()
@@ -189,7 +195,7 @@ class Lote {
 class Venta {
   +ID id
   +IDUsuario usuario
-  +DateTime fechaventa
+  +DateTime fecha
   +EstadoVenta estado
   +Float total
   +confirmarVenta()
@@ -204,6 +210,7 @@ class DetalleVenta {
   +Lote lote
   +Venta venta
   +Float subtotal
+  +IDProducto producto
   +calcularSubtotal()
   +validarCantidadDisponible()
 }
@@ -212,10 +219,10 @@ class DetalleVenta {
 class Movimiento {
   +ID id
   +Int Cantidad
-  +DateTime fechaHora
+  +DateTime fecha
   +IDUsuario usuario
-  +Lote lote
-  +TipoMovimiento(ENTRADA, SALIDA) 
+  +IDProducto producto
+  +TipoMovimineto tipo
   +registrarEntrada()
   +registrarSalida()
 }
