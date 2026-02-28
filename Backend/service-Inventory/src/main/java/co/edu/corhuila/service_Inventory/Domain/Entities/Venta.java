@@ -26,16 +26,26 @@ public class Venta {
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
     private List<DetalleVenta> detalles;
 
+    @Column(nullable = false)
+    private String usuarioEmail;
+
+
+
     public Venta() {}
 
-    public Venta(BigDecimal total) {
+    public Venta(BigDecimal total, String usuarioEmail) {
         this.fecha = LocalDateTime.now();
         this.estado = EstadoVenta.COMPLETADA;
         this.total = total;
+        this.usuarioEmail = usuarioEmail;
     }
+
+
 
     public Long getId() { return id; }
     public BigDecimal getTotal() { return total; }
+
+    public String getUsuarioEmail() { return usuarioEmail; }
 
 
 
