@@ -62,4 +62,8 @@ public class Producto {
 
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setPrecio(BigDecimal precio) { this.precio = precio; }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
 }

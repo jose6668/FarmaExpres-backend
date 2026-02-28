@@ -47,6 +47,11 @@ public class Venta {
 
     public String getUsuarioEmail() { return usuarioEmail; }
 
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
 
-
+    public void setDetalles(List<DetalleVenta> detalles) {
+        this.detalles = detalles;
+    }
 }

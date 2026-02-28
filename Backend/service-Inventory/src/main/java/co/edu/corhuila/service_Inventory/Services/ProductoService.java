@@ -34,4 +34,12 @@ public class ProductoService {
         return productoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
     }
+
+    public Producto guardar(Producto producto) {
+        return productoRepository.save(producto);
+    }
+
+    public void eliminar(Long id) {
+        productoRepository.deleteById(id);
+    }
 }

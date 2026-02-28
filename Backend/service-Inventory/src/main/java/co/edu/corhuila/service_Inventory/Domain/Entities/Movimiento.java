@@ -2,6 +2,7 @@ package co.edu.corhuila.service_Inventory.Domain.Entities;
 
 
 import co.edu.corhuila.service_Inventory.Domain.Enums.TipoMovimiento;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -21,8 +22,11 @@ public class Movimiento {
     private Integer cantidad;
 
     private LocalDateTime fecha;
+
+
     @ManyToOne
     @JoinColumn(name = "producto_id")
+    @JsonIgnore
     private Producto producto;
 
     public Movimiento() {}
@@ -37,7 +41,10 @@ public class Movimiento {
     }
 
     public Long getId() { return id; }
-
+    public TipoMovimiento getTipo() { return tipo; }
+    public Integer getCantidad() { return cantidad; }
+    public LocalDateTime getFecha() { return fecha; }
+    public Producto getProducto() { return producto; }
 }
 
 

@@ -1,6 +1,7 @@
 package co.edu.corhuila.service_Inventory.Domain.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -21,10 +22,12 @@ public class DetalleVenta {
 
     @ManyToOne
     @JoinColumn(name = "venta_id")
+    @JsonIgnore
     private Venta venta;
 
     @ManyToOne
     @JoinColumn(name = "producto_id")
+    @JsonIgnore
     private Producto producto;
 
     public DetalleVenta() {}
@@ -40,5 +43,27 @@ public class DetalleVenta {
         this.venta = venta;
     }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public BigDecimal getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
 }
