@@ -3,6 +3,7 @@ package co.edu.corhuila.service_Inventory.Controllers;
 
 import co.edu.corhuila.service_Inventory.Domain.Entities.Producto;
 import co.edu.corhuila.service_Inventory.Services.ProductoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public class ProductoController {
     }
 
     @PostMapping
-    public Producto crear(@RequestBody Producto producto) {
-        return productoService.crearProducto(producto);
+    public ResponseEntity<Producto> crear(@RequestBody Producto producto) {
+        return ResponseEntity.ok(productoService.crearProducto(producto));
     }
 
     @GetMapping
