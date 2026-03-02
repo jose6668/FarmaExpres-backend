@@ -11,7 +11,7 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private final String SECRET = "clave_super_secreta_muy_larga_para_hs256_123456";
+    private final String SECRET = "clave_super_secreta";
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
 
     public Claims extraerClaims(String token) {

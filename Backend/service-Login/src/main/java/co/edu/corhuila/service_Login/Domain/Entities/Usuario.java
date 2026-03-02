@@ -45,6 +45,10 @@ public class Usuario {
         this.estado = EstadoUsuario.BLOQUEADO;
     }
 
+    public void desbloquear() {
+        this.estado = EstadoUsuario.ACTIVO;
+    }
+
 
     public Long getId() {
         return id;

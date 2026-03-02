@@ -49,6 +49,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/productos/**")
                         .hasRole("ADMIN")
 
+
                         // ADMIN puede ver Movimientos
                         .requestMatchers(HttpMethod.GET, "/movimientos/**")
                         .hasRole("ADMIN")

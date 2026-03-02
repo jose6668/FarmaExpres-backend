@@ -109,24 +109,21 @@ public class UsuarioService {
     }
 
     // =========================
-    // Asignar Rol
+    // Desbloquear Usuario
     // =========================
-    public void asignarRol(Long usuarioId,
-                           String nombreRol
-                           ) {
+
+    public void desbloquearUsuario(Long usuarioId) {
 
         Usuario usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        Rol rol = rolRepository.findByNombre(nombreRol)
-                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
-
-        usuario.setRol(rol);
+        usuario.desbloquear();
         usuarioRepository.save(usuario);
 
         bitacoraRepository.save(
-                new Bitacora(usuario.getId(), "CAMBIO_ROL")
+                new Bitacora(usuario.getId(), "USUARIO_DESBLOQUEADO")
         );
     }
+
 
 }
