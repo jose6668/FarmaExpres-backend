@@ -4,12 +4,14 @@ import co.edu.corhuila.service_Login.Services.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
@@ -27,8 +29,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/usuarios/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/usuarios/*/bloquear").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/usuarios/*/desbloquear").hasRole("ADMIN")
+
+                        // Bitacora Admin
+                        .requestMatchers("/bitacora/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
 
